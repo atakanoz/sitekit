@@ -2,7 +2,7 @@
 
 namespace Theme;
 
-class Performance extends Kit {
+class Performance {
 
 	public function remove_svg_filters() {
 		remove_action( 'wp_body_open', 'wp_global_styles_render_svg_filters' );
@@ -73,10 +73,21 @@ class Performance extends Kit {
 		remove_filter( 'pre_oembed_result', 'wp_filter_pre_oembed_result', 10 );
 	}
 
+	public function remove_block_styles() {
+		wp_deregister_style( 'wp-block-library' );
+		wp_deregister_style( 'wp-block-library-theme' );
+		wp_deregister_style( 'wc-block-style' );
+		wp_deregister_style( 'global-styles' );
+
+		remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
+	}
+
 }
 
 $performance = new Performance();
 
-add_action( 'init', array( $performance, 'remove_svg_filters' ) );
-add_action( 'init', array( $performance, 'remove_emojis' ) );
-add_action( 'init', array( $performance, 'jquery_from_google' ) );
+$performance_methods = get_class_methods( $performance );
+
+foreach ( $performance_methods as $functions ) {
+	add_action( 'init', array( $performance, $functions ) );
+}

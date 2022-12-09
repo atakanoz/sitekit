@@ -176,7 +176,6 @@ class Kit {
 		Setup::make_nav_menus( $init['menus'] );
 	}
 
-
 }
 
 

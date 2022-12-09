@@ -60,10 +60,8 @@ add_filter( 'wp_get_attachment_image_attributes', 'fx_lazyload_class' );
  * @return array
  */
 function fx_body_classes( $classes ) {
-	// Adds a class of hfeed to non-singular pages.
-	if ( ! is_singular() ) {
-		$classes[] = 'hfeed';
-	}
+
+	unset( $classes[ array_search( 'wp-embed-responsive', $classes ) ] );
 
 	// Adds a class of no-sidebar when there is no sidebar present.
 	if ( ! is_active_sidebar( 'primary' ) ) {
@@ -85,3 +83,45 @@ function fx_read_more_link() {
 }
 add_filter( 'the_content_more_link', 'fx_read_more_link' );
 add_filter( 'excerpt_more', 'fx_read_more_link' );
+
+
+/**
+ * Hide WordPress Version
+ *
+ * @since 1.0.0
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ */
+function hide_wp_version() {
+	return '';
+}
+remove_action( 'wp_head', 'wp_generator' );
+add_filter( 'the_generator', '_hide_wp_version' );
+
+/**
+ * Disable XML-RPC
+ *
+ * @since 1.0.0
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ */
+function remove_x_pingback( $headers ) {
+	unset( $headers['X-Pingback'], $headers['x-pingback'] );
+	return $headers;
+}
+
+add_filter( 'xmlrpc_enabled', '__return_false' );
+add_filter( 'wp_headers', 'remove_x_pingback' );
+add_filter( 'pings_open', '__return_false', 9999 );
+
+remove_action( 'xmlrpc_rsd_apis', 'rest_output_rsd' );
+remove_action( 'wp_head', 'rest_output_link_wp_head' );
+remove_action( 'template_redirect', 'rest_output_link_header', 11, 0 );
+
+
+remove_action( 'wp_head', 'wlwmanifest_link' );
+
+remove_action( 'wp_head', 'rsd_link' );
+
+remove_action( 'wp_head', 'wp_shortlink_wp_head' );
+	remove_action( 'template_redirect', 'wp_shortlink_header', 11, 0 );

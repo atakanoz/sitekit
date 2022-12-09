@@ -66,6 +66,12 @@ class Setup extends Kit {
 		if ( is_array( $sidebars ) || is_object( $sidebars ) ) {
 
 			foreach ( $sidebars as $sidebar => $value ) {
+
+				/**
+				 * Register the sidebars.
+				 *
+				 * @link https://developer.wordpress.org/reference/functions/register_sidebar/
+				 */
 				register_sidebar(
 					array(
 						'id'            => $sidebar,
