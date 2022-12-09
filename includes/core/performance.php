@@ -37,22 +37,6 @@ class Performance {
 		add_filter( 'emoji_svg_url', '__return_false' );
 	}
 
-	public function remove_emojis_tinymce() {
-		if ( is_array( $plugins ) ) {
-			return array_diff( $plugins, array( 'wpemoji' ) );
-		} else {
-			return array();
-		}
-	}
-
-	public function disable_emojis_prefetch() {
-		if ( 'dns-prefetch' == $relation_type ) {
-			$emoji_svg_url = apply_filters( 'emoji_svg_url', 'https://s.w.org/images/core/emoji/2.2.1/svg/' );
-			$urls          = array_diff( $urls, array( $emoji_svg_url ) );
-		}
-		return $urls;
-	}
-
 	public function disable_embeds() {
 		global $wp;
 
