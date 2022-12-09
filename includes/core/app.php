@@ -2,9 +2,6 @@
 
 namespace Theme;
 
-require_once get_template_directory() . '/includes/core/setup.php';
-require_once get_template_directory() . '/includes/core/helpers.php';
-
 class Kit {
 
 	/**
@@ -54,8 +51,13 @@ class Kit {
 	 *
 	 * @var string $jquery.
 	 */
-	public static $jquery = '';
+	public static $jquery;
 
+	/**
+	 * Custom fields.
+	 *
+	 * @var string $jquery.
+	 */
 	public static $custom_fields = 'none';
 
 	/**
@@ -159,17 +161,25 @@ class Kit {
 			require_once get_template_directory() . '/vendor/autoload.php';
 		}
 
+		// Enqueue jQuery.
 		if ( $init['jquery_support'] ) {
-			self::$jquery = 'jquery';
+			self::$jquery = array( 'jquery' );
 		}
 
+		// Carbon Fields option.
 		if ( 'carbon_fields' === $init['custom_fields'] ) {
 			Setup::init_carbon_fields();
 		}
 
+		// Make the setup.
 		Setup::make_sidebars( $init['sidebars'] );
 		Setup::make_nav_menus( $init['menus'] );
 	}
 
 
 }
+
+
+require_once get_template_directory() . '/includes/core/setup.php';
+require_once get_template_directory() . '/includes/core/helpers.php';
+require_once get_template_directory() . '/includes/core/performance.php';

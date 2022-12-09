@@ -4,8 +4,8 @@
  *
  * The area of the page that contains footer area.
  *
- * @package flex
- * @author pressx
+ * @package themekit
+ * @author themekit
  * @since 1.0.0
  */
 

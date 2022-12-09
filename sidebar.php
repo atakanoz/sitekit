@@ -4,7 +4,7 @@
  *
  * The area of the page that contains the Sidebar area.
  *
- * @package flex
- * @author pressx
+ * @package themekit
+ * @author themekit
  * @since 1.0.0
  */

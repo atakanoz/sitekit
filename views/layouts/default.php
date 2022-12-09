@@ -3,8 +3,8 @@
  *
  * Default layout.
  *
- * @package flex
- * @author pressx
+ * @package themekit
+ * @author themekit
  * @since 1.0.0
  */
 

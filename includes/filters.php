@@ -2,8 +2,8 @@
 /**
  * Various filters to help development.
  *
- * @package flex
- * @author pressx
+ * @package themekit
+ * @author themekit
  * @since 1.0.0
  */
 
@@ -81,7 +81,7 @@ add_filter( 'body_class', 'fx_body_classes' );
  * @return string
  */
 function fx_read_more_link() {
-	return '<a class="read-more" href="' . get_permalink() . '">' . __( 'Read more', 'flex' ) . ' →</a>';
+	return '<a class="read-more" href="' . get_permalink() . '">' . __( 'Read more', 'themekit' ) . ' →</a>';
 }
 add_filter( 'the_content_more_link', 'fx_read_more_link' );
 add_filter( 'excerpt_more', 'fx_read_more_link' );

@@ -10,12 +10,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/atakanoz/sitekit.git"
+    "url": "git+https://github.com/atakanoz/themekit.git"
   },
   "keywords": [],
   "author": "Kite",
   "license": "GPL-2.0+",
-  "homepage": "https://github.com/atakanoz/sitekit",
+  "homepage": "https://github.com/atakanoz/themekit",
   "bugs": {
     "url": "https://github.com/pressxco/flex/issues"
   },

@@ -51,7 +51,7 @@ class Setup extends Kit {
 
 	public static function init_carbon_fields() {
 
-		Carbon_Fields\Carbon_Fields::boot();
+		\Carbon_Fields\Carbon_Fields::boot();
 	}
 
 	/**
@@ -70,11 +70,11 @@ class Setup extends Kit {
 					array(
 						'id'            => $sidebar,
 						'name'          => $value['name'],
-						'description'   => $value['description'] ? $value['description'] : '',
-						'before_widget' => $value['before_widget'] ? $value['before_widget'] : '',
-						'after_widget'  => $value['after_widget'] ? $value['after_widget'] : '',
-						'before_title'  => $value['before_title'] ? $value['before_title'] : '',
-						'after_title'   => $value['after_title'] ? $value['after_title'] : '',
+						'description'   => isset( $value['description'] ) ? $value['description'] : '',
+						'before_widget' => isset( $value['before_widget'] ) ? $value['before_widget'] : '',
+						'after_widget'  => isset( $value['after_widget'] ) ? $value['after_widget'] : '',
+						'before_title'  => isset( $value['before_title'] ) ? $value['before_title'] : '',
+						'after_title'   => isset( $value['after_title'] ) ? $value['after_title'] : '',
 					)
 				);
 			}
@@ -91,3 +91,11 @@ class Setup extends Kit {
 	}
 
 }
+
+$the_setup = new Setup();
+
+add_action( 'widgets_init', array( $the_setup, 'make_sidebars' ) );
+
+add_action( 'wp_enqueue_scripts', array( $the_setup, 'styles' ) );
+
+add_action( 'wp_enqueue_scripts', array( $the_setup, 'scripts' ) );

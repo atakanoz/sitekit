@@ -3,7 +3,7 @@
  * The template file for displaying the comments and comment form for the
  * atakanoz theme.
  *
- * @package flex
+ * @package themekit
  *
  * @since 1.0.0
  */

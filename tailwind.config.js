@@ -15,7 +15,8 @@ module.exports = {
     './page.php',
     './search.php',
     './sidebar.php',
-    './single.php',
+		'./single.php',
+		'./front-page.php'
   ],
   theme: {
     plugins: []

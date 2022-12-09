@@ -1,12 +1,5 @@
 <?php
 
-$kit_setup = new Theme\Setup();
-
-add_action( 'widgets_init', array( $kit_setup, 'make_sidebars' ) );
-add_action( 'wp_enqueue_scripts', array( $kit_setup, 'styles' ) );
-add_action( 'wp_enqueue_scripts', array( $kit_setup, 'scripts' ) );
-
-
 add_action(
 	'after_setup_theme',
 	function() {

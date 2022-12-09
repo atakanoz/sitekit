@@ -3,8 +3,8 @@
  *
  * The structure of the page that contains the front page and it's content.
  *
- * @package flex
- * @author pressx
+ * @package themekit
+ * @author themekit
  * @since 1.0.0
  */
 

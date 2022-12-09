@@ -4,7 +4,7 @@
  *
  * The structure of the page that contains the 404 content.
  *
- * @package flex
- * @author pressx
+ * @package themekit
+ * @author themekit
  * @since 1.0.0
  */
