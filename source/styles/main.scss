@@ -1,0 +1,16 @@
+/*!
+Theme Name: PressX
+Description: Site tagline
+Author: PressX
+Author URI: https://www.pressx.co
+Version: 1.0.0
+*/
+
+// Tailwind
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+.test {
+	background: #fff;
+}
