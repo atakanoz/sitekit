@@ -16,7 +16,6 @@ require get_template_directory() . '/includes/core/app.php';
 
 if ( class_exists( 'Theme\Kit' ) ) {
 
-
 	/**
 	 * Initiliaze the Kit.
 	 *
@@ -35,8 +34,8 @@ if ( class_exists( 'Theme\Kit' ) ) {
 			'text_domain'     => 'themekit',
 			'icon_directory'  => '/dist/icons/',
 			'image_directory' => '/dist/images/',
-			'load_composer'   => true,
-			'jquery_support'  => true,
+			'load_composer'   => false,
+			'jquery_support'  => false,
 			'custom_fields'   => 'carbon_fields',
 			/**
 			 * Styles and scripts.
@@ -70,6 +69,3 @@ if ( class_exists( 'Theme\Kit' ) ) {
 	);
 
 }
-
-require get_template_directory() . '/includes/actions.php';
-require get_template_directory() . '/includes/filters.php';

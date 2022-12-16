@@ -49,9 +49,35 @@ class Setup extends Kit {
 		}
 	}
 
-	public static function init_carbon_fields() {
+	/**
+	 * Initialize Composer.
+	 *
+	 * @since 1.0.0
+	 * @return void
+	 */
+	public function init_composer() {
 
-		\Carbon_Fields\Carbon_Fields::boot();
+		if ( Kit::$composer === true && file_exists( get_template_directory() . '/vendor/autoload.php' ) ) {
+
+			require_once get_template_directory() . '/vendor/autoload.php';
+
+		}
+
+	}
+
+	/**
+	 * Initialize Carbon Fields.
+	 *
+	 * @since 1.0.0
+	 * @return void
+	 */
+	public function init_carbon_fields() {
+
+		if ( Kit::$custom_fields === 'carbon_fields' && Kit::$composer === true ) {
+
+			\Carbon_Fields\Carbon_Fields::boot();
+
+		}
 	}
 
 	/**
@@ -61,11 +87,11 @@ class Setup extends Kit {
 	 * @since 1.0.0
 	 * @return void
 	 */
-	public static function make_sidebars( $sidebars = array() ) {
+	public function make_sidebars() {
 
-		if ( is_array( $sidebars ) || is_object( $sidebars ) ) {
+		if ( is_array( Kit::$sidebars ) || is_object( Kit::$sidebars ) ) {
 
-			foreach ( $sidebars as $sidebar => $value ) {
+			foreach ( Kit::$sidebars as $sidebar => $value ) {
 
 				/**
 				 * Register the sidebars.
@@ -87,13 +113,29 @@ class Setup extends Kit {
 		}
 	}
 
-	public static function make_nav_menus( $menus = array() ) {
+	/**
+	 * Nav Menus.
+	 *
+	 * @since 1.0.0
+	 * @param  mixed $menus
+	 * @return void
+	 */
+	public function make_nav_menus() {
 		/**
 		 * Register the navigation menus.
 		 *
 		 * @link https://developer.wordpress.org/reference/functions/register_nav_menus/
 		 */
-		register_nav_menus( $menus );
+
+		if ( is_array( Kit::$sidebars ) || is_object( Kit::$sidebars ) ) {
+
+			foreach ( Kit::$menus as $location => $description ) {
+
+				register_nav_menu( $location, $description );
+
+			}
+		}
+
 	}
 
 }
@@ -105,3 +147,5 @@ add_action( 'widgets_init', array( $the_setup, 'make_sidebars' ) );
 add_action( 'wp_enqueue_scripts', array( $the_setup, 'styles' ) );
 
 add_action( 'wp_enqueue_scripts', array( $the_setup, 'scripts' ) );
+
+add_action( 'after_setup_theme', array( $the_setup, 'make_nav_menus' ) );

@@ -56,9 +56,30 @@ class Kit {
 	/**
 	 * Custom fields.
 	 *
-	 * @var string $jquery.
+	 * @var string $custom_fields;
 	 */
-	public static $custom_fields = 'none';
+	public static $custom_fields;
+
+	/**
+	 * Sidebars.
+	 *
+	 * @var array $sidebars;
+	 */
+	public static $sidebars = array();
+
+	/**
+	 * Menus.
+	 *
+	 * @var array $menus.
+	 */
+	public static $menus = array();
+
+	/**
+	 * Composer.
+	 *
+	 * @var string $composer.
+	 */
+	public static $composer;
 
 	/**
 	 * Debug.
@@ -155,25 +176,21 @@ class Kit {
 		self::$styles        = $init['styles'];
 		self::$scripts       = $init['scripts'];
 		self::$custom_fields = $init['custom_fields'];
+		self::$sidebars      = $init['sidebars'];
+		self::$menus         = $init['menus'];
+		self::$jquery        = $init['jquery_support'] ? array( 'jquery' ) : array();
+		self::$composer      = $init['load_composer'];
+		self::$custom_fields = $init['custom_fields'] ? $init['custom_fields'] : 'none';
 
-		// Manage 3rd party integrations.
-		if ( $init['load_composer'] && file_exists( get_template_directory() . '/vendor/autoload.php' ) ) {
-			require_once get_template_directory() . '/vendor/autoload.php';
-		}
-
-		// Enqueue jQuery.
-		if ( $init['jquery_support'] ) {
-			self::$jquery = array( 'jquery' );
-		}
-
-		// Carbon Fields option.
-		if ( 'carbon_fields' === $init['custom_fields'] ) {
-			Setup::init_carbon_fields();
-		}
-
-		// Make the setup.
-		Setup::make_sidebars( $init['sidebars'] );
-		Setup::make_nav_menus( $init['menus'] );
+		/**
+		 * Initialize Modules.
+		 *
+		 * @since 1.0.0
+		 */
+		require get_template_directory() . '/includes/performance.php';
+		require get_template_directory() . '/includes/security.php';
+		require get_template_directory() . '/includes/actions.php';
+		require get_template_directory() . '/includes/filters.php';
 	}
 
 }
@@ -181,4 +198,3 @@ class Kit {
 
 require_once get_template_directory() . '/includes/core/setup.php';
 require_once get_template_directory() . '/includes/core/helpers.php';
-require_once get_template_directory() . '/includes/core/performance.php';

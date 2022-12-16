@@ -1,5 +1,5 @@
 {
-  "name": "SiteKit",
+  "name": "ThemeKit",
   "version": "1.0.0",
   "description": "The simplest WordPress starter theme including full setup for Sass, PostCSS, Autoprefixer, stylelint, Webpack, ESLint, imagemin, Browsersync, etc.",
   "scripts": {
@@ -13,12 +13,8 @@
     "url": "git+https://github.com/atakanoz/themekit.git"
   },
   "keywords": [],
-  "author": "Kite",
   "license": "GPL-2.0+",
   "homepage": "https://github.com/atakanoz/themekit",
-  "bugs": {
-    "url": "https://github.com/pressxco/flex/issues"
-  },
   "devDependencies": {
     "@tailwindcss/forms": "^0.3.2",
     "@tailwindcss/line-clamp": "^0.2.1",
