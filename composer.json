@@ -1,26 +1,29 @@
 {
-  "name": "themekit",
-  "description": "Flex is the simplest WordPress starter theme including full setup for Sass, PostCSS, Autoprefixer, stylelint, Webpack, ESLint, imagemin, Browsersync, etc.",
-  "type": "project",
-  "require": {
-    "htmlburger/carbon-fields": "^3.3"
-  },
-  "require-dev": {
-    "wp-coding-standards/wpcs": "^2.3"
-  },
-  "scripts": {
-    "post-install-cmd": [
-      "phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs",
-      "phpcs --config-set default_standard WordPress"
-    ],
-    "test": [
-      "phpcs --extensions=php --ignore=./vendor,./node_modules,./.yarn ./"
-    ],
-    "fix": [
-      "phpcbf --extensions=php --ignore=./vendor,./node_modules,./.yarn ./"
-    ]
-  },
-  "config": {
-    "platform-check": false
-  }
+	"name": "theme/kit",
+	"description": "Flex is the simplest WordPress starter theme including full setup for Sass, PostCSS, Autoprefixer, stylelint, Webpack, ESLint, imagemin, Browsersync, etc.",
+	"type": "project",
+	"require": {
+		"htmlburger/carbon-fields": "^3.3",
+		"vlucas/phpdotenv": "^5.5",
+		"atakanoz/wpkit": "dev-main"
+	},
+	"require-dev": {
+		"wp-coding-standards/wpcs": "^2.3"
+	},
+	"scripts": {
+		"post-install-cmd": [
+			"phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs",
+			"phpcs --config-set default_standard WordPress"
+		],
+		"test": [
+			"phpcs --extensions=php --ignore=./vendor,./node_modules,./.yarn ./"
+		],
+		"fix": [
+			"phpcbf --extensions=php --ignore=./vendor,./node_modules,./.yarn ./"
+		]
+	},
+	"config": {
+		"platform-check": false
+	},
+	"minimum-stability": "dev"
 }

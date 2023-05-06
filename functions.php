@@ -9,63 +9,61 @@
  * @since 1.0.0
  */
 
+/*
+|--------------------------------------------------------------------------
+| Register The Auto Loader
+|--------------------------------------------------------------------------
+|
+| Composer provides a convenient, automatically generated class loader for
+| our theme. We will simply require it into the script here so that we
+| don't have to worry about manually loading any of our classes later on.
+|
+*/
 
-// Require includes.
-require get_template_directory() . '/includes/core/app.php';
+if ( ! file_exists( $composer = __DIR__ . '/vendor/autoload.php' ) ) {
+	wp_die( __( 'Error locating autoloader. Please run <code>composer install</code>.', 'kit' ) );
+}
+
+require $composer;
 
 
-if ( class_exists( 'Theme\Kit' ) ) {
+ /*
+|--------------------------------------------------------------------------
+| Load Environment Variables
+|--------------------------------------------------------------------------
+|
+| The first thing we will do is schedule a new Acorn application container
+| to boot when WordPress is finished loading the theme. The application
+| serves as the "glue" for all the components of Laravel and is
+| the IoC container for the system binding all of the various parts.
+|
+*/
 
-	/**
-	 * Initiliaze the Kit.
-	 *
-	 * @see Kit
-	 * @see Kit::init();
-	 */
-	Theme\Kit::init(
+$dotenv = Dotenv\Dotenv::createImmutable( __DIR__ );
+$dotenv->safeLoad();
+
+
+/*
+|--------------------------------------------------------------------------
+| Register The Bootloader
+|--------------------------------------------------------------------------
+|
+| The first thing we will do is schedule a new Acorn application container
+| to boot when WordPress is finished loading the theme. The application
+| serves as the "glue" for all the components of Laravel and is
+| the IoC container for the system binding all of the various parts.
+|
+*/
+
+try {
+	Theme\Kit::instance();
+} catch ( Throwable $e ) {
+	wp_die(
+		__( 'You need to install Acorn to use this theme.', 'sage' ),
+		'',
 		array(
-			/**
-			 * General settings.
-			 *
-			 * @link https://kitstudio.com/themekit/docs/general-settings
-			 */
-			'theme_name'      => 'ThemeKit',
-			'theme_version'   => '1.0.0',
-			'text_domain'     => 'themekit',
-			'icon_directory'  => '/dist/icons/',
-			'image_directory' => '/dist/images/',
-			'load_composer'   => false,
-			'jquery_support'  => false,
-			'custom_fields'   => 'carbon_fields',
-			/**
-			 * Styles and scripts.
-			 * ------------------------------------------------------------------------
-			 */
-			'styles'          => array(
-				'main' => '/dist/styles.bundle.css',
-			),
-			'scripts'         => array(
-				'main' => '/dist/scripts.bundle.js',
-			),
-			/**
-			 * Sidebars
-			 * ------------------------------------------------------------------------
-			 */
-			'sidebars'        => array(
-				'primary' => array(
-					'name'        => __( 'Primary Sidebar', 'kit' ),
-					'description' => __( 'Primary Sidebar for the blog area.', 'kit' ),
-				),
-			),
-			/**
-			 * Menus.
-			 * ------------------------------------------------------------------------
-			 */
-			'menus'           => array(
-				'primary' => __( 'Primary Menu', 'kit' ),
-				'test'    => __( 'Test Menu', 'kit' ),
-			),
+			'link_url'  => 'https://docs.roots.io/acorn/2.x/installation/',
+			'link_text' => __( 'Acorn Docs: Installation', 'sage' ),
 		)
 	);
-
 }

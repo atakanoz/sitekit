@@ -8,12 +8,13 @@
  * -----------------------------------------------------------------------------
  * -----------------------------------------------------------------------------
  */
-function remove_svg_filters() {
-	remove_action( 'wp_body_open', 'wp_global_styles_render_svg_filters' );
-	remove_action( 'in_admin_header', 'wp_global_styles_render_svg_filters' );
-}
-
-add_action( 'init', 'remove_svg_filters' );
+add_action(
+	'init',
+	function() {
+		remove_action( 'wp_body_open', 'wp_global_styles_render_svg_filters' );
+		remove_action( 'in_admin_header', 'wp_global_styles_render_svg_filters' );
+	}
+);
 
 
 /**
@@ -24,18 +25,19 @@ add_action( 'init', 'remove_svg_filters' );
  * -----------------------------------------------------------------------------
  * -----------------------------------------------------------------------------
  */
-function remove_emojis() {
-	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-	remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
-	remove_action( 'wp_print_styles', 'print_emoji_styles' );
-	remove_action( 'admin_print_styles', 'print_emoji_styles' );
-	remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
-	remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
-	remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
-	add_filter( 'emoji_svg_url', '__return_false' );
-}
-
-add_action( 'init', 'remove_emojis' );
+add_action(
+	'init',
+	function() {
+		remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+		remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+		remove_action( 'wp_print_styles', 'print_emoji_styles' );
+		remove_action( 'admin_print_styles', 'print_emoji_styles' );
+		remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+		remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+		remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+		add_filter( 'emoji_svg_url', '__return_false' );
+	}
+);
 
 /**
  * Disable Embeds
@@ -45,23 +47,20 @@ add_action( 'init', 'remove_emojis' );
  * -----------------------------------------------------------------------------
  * -----------------------------------------------------------------------------
  */
-function disable_embeds() {
+add_action(
+	'init',
+	function() {
 		global $wp;
 
 		$wp->public_query_vars = array_diff( $wp->public_query_vars, array( 'embed' ) );
 
 		add_filter( 'embed_oembed_discover', '__return_false' );
-
 		remove_filter( 'oembed_dataparse', 'wp_filter_oembed_result', 10 );
-
 		remove_action( 'wp_head', 'wp_oembed_add_discovery_links' );
-
 		remove_action( 'wp_head', 'wp_oembed_add_host_js' );
-
 		remove_filter( 'pre_oembed_result', 'wp_filter_pre_oembed_result', 10 );
-}
-
-add_action( 'init', 'disable_embeds' );
+	}
+);
 
 /**
  * Remove Gutenberg Styles
@@ -71,11 +70,12 @@ add_action( 'init', 'disable_embeds' );
  * -----------------------------------------------------------------------------
  * -----------------------------------------------------------------------------
  */
-function remove_block_styles() {
-
-	/**
-	 * Disables Gutenberg Styles.
-	 */
+add_action(
+	'init',
+	function() {
+		/**
+		 * Disables Gutenberg Styles.
+		 */
 		wp_deregister_style( 'wp-block-library' );
 		wp_deregister_style( 'wp-block-library-theme' );
 		wp_deregister_style( 'wc-block-style' );
@@ -88,20 +88,20 @@ function remove_block_styles() {
 		add_filter( 'use_block_editor_for_post', '__return_false' );
 		add_filter( 'use_block_editor_for_post_type', '__return_false' );
 		add_filter( 'use_widgets_block_editor', '__return_false' );
-}
-
-add_action( 'init', 'remove_block_styles' );
+	}
+);
 
 /**
  * Disable Classic Theme Styles
  */
-
-function disable_classic_theme_styles() {
-	wp_deregister_style( 'classic-theme-styles' );
-	wp_dequeue_style( 'classic-theme-styles' );
-}
-
-add_filter( 'wp_enqueue_scripts', 'disable_classic_theme_styles', 100 );
+add_filter(
+	'wp_enqueue_scripts',
+	function() {
+		wp_deregister_style( 'classic-theme-styles' );
+		wp_dequeue_style( 'classic-theme-styles' );
+	},
+	100
+);
 
 /**
  * Clear Admin Widgets
@@ -109,16 +109,17 @@ add_filter( 'wp_enqueue_scripts', 'disable_classic_theme_styles', 100 );
  * @since 1.0.0
  * @return void
  */
-function admin_widgets() {
-	remove_meta_box( 'dashboard_incoming_links', 'dashboard', 'normal' );
-	remove_meta_box( 'dashboard_plugins', 'dashboard', 'normal' );
-	remove_meta_box( 'dashboard_primary', 'dashboard', 'side' );
-	remove_meta_box( 'dashboard_secondary', 'dashboard', 'normal' );
-	remove_meta_box( 'dashboard_quick_press', 'dashboard', 'side' );
-	remove_meta_box( 'dashboard_recent_drafts', 'dashboard', 'side' );
-	remove_meta_box( 'dashboard_recent_comments', 'dashboard', 'normal' );
-	// remove_meta_box( 'dashboard_right_now', 'dashboard', 'normal' );
-	remove_meta_box( 'dashboard_activity', 'dashboard', 'normal' );
-}
-
-add_action( 'admin_init', 'admin_widgets' );
+add_action(
+	'admin_init',
+	function() {
+		remove_meta_box( 'dashboard_incoming_links', 'dashboard', 'normal' );
+		remove_meta_box( 'dashboard_plugins', 'dashboard', 'normal' );
+		remove_meta_box( 'dashboard_primary', 'dashboard', 'side' );
+		remove_meta_box( 'dashboard_secondary', 'dashboard', 'normal' );
+		remove_meta_box( 'dashboard_quick_press', 'dashboard', 'side' );
+		remove_meta_box( 'dashboard_recent_drafts', 'dashboard', 'side' );
+		remove_meta_box( 'dashboard_recent_comments', 'dashboard', 'normal' );
+		remove_meta_box( 'dashboard_right_now', 'dashboard', 'normal' );
+		remove_meta_box( 'dashboard_activity', 'dashboard', 'normal' );
+	}
+);
