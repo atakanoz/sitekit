@@ -59,11 +59,6 @@ try {
 	Theme\Kit::instance();
 } catch ( Throwable $e ) {
 	wp_die(
-		__( 'You need to install Acorn to use this theme.', 'sage' ),
-		'',
-		array(
-			'link_url'  => 'https://docs.roots.io/acorn/2.x/installation/',
-			'link_text' => __( 'Acorn Docs: Installation', 'sage' ),
-		)
+		__( 'You need to install composer to use this theme.', 'kit' )
 	);
 }
