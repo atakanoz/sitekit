@@ -27,7 +27,7 @@ if ( ! file_exists( $composer = __DIR__ . '/vendor/autoload.php' ) ) {
 require $composer;
 
 
- /*
+/*
 |--------------------------------------------------------------------------
 | Load Environment Variables
 |--------------------------------------------------------------------------
@@ -55,10 +55,12 @@ $dotenv->safeLoad();
 |
 */
 
-try {
-	Theme\Kit::instance();
-} catch ( Throwable $e ) {
-	wp_die(
-		__( 'You need to install composer to use this theme.', 'kit' )
-	);
-}
+Theme\Core\Bootstrap::instance();
+
+// try {
+// 	Theme\Core\Bootstrap::instance();
+// } catch (Throwable $e) {
+// 	wp_die(
+// 		__( 'You need to install composer to use this theme.', 'kit' )
+// 	);
+// }

@@ -2,10 +2,21 @@
 	"name": "theme/kit",
 	"description": "Flex is the simplest WordPress starter theme including full setup for Sass, PostCSS, Autoprefixer, stylelint, Webpack, ESLint, imagemin, Browsersync, etc.",
 	"type": "project",
+	"repositories": [
+		{
+			"type": "path",
+			"url": "vendor/wpkit",
+			"options": {
+				"symlink": true,
+				"reference": "none"
+			}
+		}
+	],
 	"require": {
 		"htmlburger/carbon-fields": "^3.3",
 		"vlucas/phpdotenv": "^5.5",
-		"atakanoz/wpkit": "^1.0.0"
+		"symfony/yaml": "7.0.x-dev",
+		"themekit/libs": "dev-main"
 	},
 	"require-dev": {
 		"wp-coding-standards/wpcs": "^2.3"

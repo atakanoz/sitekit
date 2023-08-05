@@ -12,8 +12,7 @@
 !.yarn/versions
 
 # Output files
-/dist
-/public
+/build
 
 # Other unneeded files
 doc/

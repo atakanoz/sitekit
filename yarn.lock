@@ -2280,8 +2280,10 @@ __metadata:
     imagemin-webpack-plugin: "npm:^2.4.2"
     laravel-mix: "npm:^6.0.41"
     laravel-mix-copy-watched: "npm:^2.3.1"
+    laravel-mix-glob: "npm:^2.0.2"
     laravel-mix-imagemin: "npm:^1.0.3"
     laravel-mix-stylelint: "npm:^1.0.0"
+    mix-tailwindcss: "npm:^1.3.0"
     postcss: "npm:^8.2.15"
     postcss-import: "npm:^14.0.2"
     postcss-nested: "npm:^5.0.5"
@@ -3557,9 +3559,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.0, caniuse-lite@npm:^1.0.30001109, caniuse-lite@npm:^1.0.30001400, caniuse-lite@npm:^1.0.30001426":
-  version: 1.0.30001439
-  resolution: "caniuse-lite@npm:1.0.30001439"
-  checksum: 3e7244860ee256cef3578bef553852fe54e73832448a1d02d5be0c6c98e96b4d29bd3dd15e61de0b88dd9dbbc80a34f6df1c12730819927343ec5cdf48949a04
+  version: 1.0.30001519
+  resolution: "caniuse-lite@npm:1.0.30001519"
+  checksum: 56f8482bf8f798906f8026b6042f3f04ce69df91d84bc2194ba0830764b1d9fcdc73f3e4cfaf7f10c6872d8241178dc3e8510b0774a7020d33480766ae897082
   languageName: node
   linkType: hard
 
@@ -3917,6 +3919,13 @@ __metadata:
   version: 2.0.19
   resolution: "colorette@npm:2.0.19"
   checksum: f887e4f7608a1a37037f0b9f7da4d1608e2e1ac0126b87c4c143ff0348bc586173b86fde37f71f1b7742cd1c04285d0cb3cbeab391935886c86a162f4f2b5b87
+  languageName: node
+  linkType: hard
+
+"colors@npm:^1.4.0":
+  version: 1.4.0
+  resolution: "colors@npm:1.4.0"
+  checksum: 9a9d21c0cc711299113539f29eebd4daf42a21f12b4bfad56cf76e85e806604f6c4f26ad74dce9c7968be68c7f987bbea58c9f23a99cf55186f524860997c66a
   languageName: node
   linkType: hard
 
@@ -8102,6 +8111,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"laravel-mix-glob@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "laravel-mix-glob@npm:2.0.2"
+  dependencies:
+    chokidar: "npm:^3.5.3"
+    colors: "npm:^1.4.0"
+    cross-spawn: "npm:^7.0.3"
+    debug: "npm:^4.3.4"
+    fast-glob: "npm:^3.2.12"
+    flat-cache: "npm:^3.0.4"
+    laravel-mix: "npm:^6.0.49"
+    micromatch: "npm:^4.0.5"
+    uuid: "npm:^9.0.0"
+  checksum: bad87198492f2046751b5ebc391f813bbb4b2074cb8f0788df6e7374226ca874cf7a36e6f518a680b6f10a091cff480c4b1204aaae4556d38ff23cd513003d7d
+  languageName: node
+  linkType: hard
+
 "laravel-mix-imagemin@npm:^1.0.3":
   version: 1.0.3
   resolution: "laravel-mix-imagemin@npm:1.0.3"
@@ -8120,7 +8146,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"laravel-mix@npm:^6.0.41":
+"laravel-mix@npm:^6.0.41, laravel-mix@npm:^6.0.49":
   version: 6.0.49
   resolution: "laravel-mix@npm:6.0.49"
   dependencies:
@@ -8989,6 +9015,15 @@ __metadata:
   version: 1.2.0
   resolution: "mitt@npm:1.2.0"
   checksum: 004297b290be5e38481b15377921767a855590e874ae16ebe63cfa796c5fbf724691dc68fd5b4c85fdc1b25a1be3cf58f5014c98babda186a0960178a25998f7
+  languageName: node
+  linkType: hard
+
+"mix-tailwindcss@npm:^1.3.0":
+  version: 1.3.0
+  resolution: "mix-tailwindcss@npm:1.3.0"
+  peerDependencies:
+    laravel-mix: ^2.1.7||^3.0||^4.0||^5.0||^6.0
+  checksum: 48daef13bcdfd43e92f295c95a885ff7f07316b8baa79e3bf483b1b23e75d97e6620a2f04417487c26f60b11bced38a91c3319396b465a053780d727cb0375c4
   languageName: node
   linkType: hard
 
@@ -13426,6 +13461,15 @@ __metadata:
   bin:
     uuid: dist/bin/uuid
   checksum: 236a12282c6fa32f326aa1b6d5699a843572e9ab7de84a1507a6b7c315fdcf55bf6ed333fd37d35c5c656f4cb96af998844e1c8cae281c442a1ec3b66df62962
+  languageName: node
+  linkType: hard
+
+"uuid@npm:^9.0.0":
+  version: 9.0.0
+  resolution: "uuid@npm:9.0.0"
+  bin:
+    uuid: dist/bin/uuid
+  checksum: e1f76aff372e430bb129157360fd4cd3b393411b245604ea78e178a822ab7874ec2ebecec03ce94422b0b80bbd24733c6fa1df166c9cbad5086ef4b4843140bb
   languageName: node
   linkType: hard
 
